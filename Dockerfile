@@ -1,8 +1,17 @@
-# Dockerfile — kerangka awal
-FROM ubuntu:22.04
+# Dockerfile — Flask Buku Tamu Digital (Tahap 5)
+FROM python:3.11-slim
 
-LABEL maintainer="Jenli Melinda Banik <jenlibani@gmail.com>"
+LABEL maintainer="Jenli Melinda Banik <jenlibani@gmail.com>" \
+      description="Buku Tamu Digital — UTS Teknologi Platform"
 
-# (akan dilengkapi pada tahap containerisasi)
+WORKDIR /app
 
-CMD ["/bin/bash"]
+COPY app/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app/ .
+RUN mkdir -p /app/logs
+
+EXPOSE 8000
+
+CMD ["python", "app.py"]
