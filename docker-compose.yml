@@ -1,0 +1,49 @@
+services:
+  web:
+    build: .
+    image: bukutamu-26110023:v1
+    container_name: bukutamu-web
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=bukutamu
+      - DB_USER=tamu
+      - DB_PASSWORD=rahasia123
+    volumes:
+      - ./logs:/app/logs
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - bukutamu-net
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: bukutamu-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass456
+      MYSQL_DATABASE: bukutamu
+      MYSQL_USER: tamu
+      MYSQL_PASSWORD: rahasia123
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpass456"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - bukutamu-net
+    restart: unless-stopped
+
+networks:
+  bukutamu-net:
+    name: bukutamu-net
+    driver: bridge
+
+volumes:
+  db_data:
+    name: db_data

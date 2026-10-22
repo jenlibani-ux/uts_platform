@@ -1,4 +1,4 @@
-# Dockerfile — Flask Buku Tamu Digital (Tahap 5)
+# Dockerfile — Flask Buku Tamu Digital (Tahap 6)
 FROM python:3.11-slim
 
 LABEL maintainer="Jenli Melinda Banik <jenlibani@gmail.com>" \
@@ -12,6 +12,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app/ .
 RUN mkdir -p /app/logs
 
-EXPOSE 8000
+EXPOSE 5000
 
 CMD ["python", "app.py"]
