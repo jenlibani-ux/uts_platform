@@ -1,0 +1,16 @@
+# Kredensial sensitif — JANGAN pernah di-commit
+config/.env
+*.env
+.env.*
+
+# Log runtime
+logs/*
+!logs/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup
+*.bak
+*.backup

@@ -1,0 +1,10 @@
+  530  history | tail -10 | tac > riwayat_perintah.txt
+  529  cd ~/uts_platform/app
+  528  ls -la
+  527  cd ~/uts_platform
+  526  mkdir -p ~/uts_platform/{app,config,logs,screenshots}
+  525  docker ps
+  524  docker --version
+  523  git --version
+  522  clear
+  521  clearclearecho "  → Cek: https://github.com/jenlibani-ux/uts_platform (harus 404)"~
